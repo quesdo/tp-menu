@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleport Menu</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+
+    <div class="content4 grid4">
+
+        <div>
+            <input id="tp_product" type="button" value="TP Product" onclick="teleportToProduct()">
+        </div>
+
+        <div>
+            <input id="tp_production" type="button" value="TP Production" onclick="teleportToProduction()">
+        </div>
+
+        <div>
+            <input id="tp_supply" type="button" value="TP Supply" onclick="teleportToSupply()">
+        </div>
+
+        <div>
+            <input id="tp_ccl" type="button" value="TP CCL" onclick="teleportToCCL()">
+        </div>
+
+        <div class="mode-section">
+
+            <div>
+                <input
+                    id="mode-toggle"
+                    type="button"
+                    value="Mode : Guide"
+                    onclick="toggleGuideAuto()"
+                >
+            </div>
+
+            <div>
+                <input
+                    id="web-cascade-toggle"
+                    type="button"
+                    value="Web Cascade OFF"
+                    onclick="toggleWebCascade()"
+                >
+            </div>
+
+            <div>
+                <input
+                    id="reset-button"
+                    type="button"
+                    value="Reset"
+                    onclick="resetToAsIs()"
+                >
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
