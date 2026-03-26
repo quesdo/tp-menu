@@ -1,6 +1,7 @@
 // ===== STATE =====
 let isGuideVisible = true;
 let isWebCascadeVisible = false;
+let activeVT = null; // null | 'VT1' | 'VT2'
 
 // ===== SUPABASE =====
 let supabaseClient = null;
@@ -111,6 +112,11 @@ function syncStateFromData(data) {
         isWebCascadeVisible = data.is_web_cascade_visible;
         document.getElementById('web-cascade-toggle').value = isWebCascadeVisible ? 'Web Cascade ON' : 'Web Cascade OFF';
     }
+    if (data.active_vt !== undefined) {
+        activeVT = data.active_vt;
+        document.getElementById('vt1-toggle').style.fontWeight = activeVT === 'VT1' ? 'bold' : 'normal';
+        document.getElementById('vt2-toggle').style.fontWeight = activeVT === 'VT2' ? 'bold' : 'normal';
+    }
 }
 
 function syncFromSession(data) {
@@ -141,6 +147,9 @@ function syncFromSession(data) {
             case 'toggle_web_cascade':
                 applyWebCascadeLocal();
                 break;
+            case 'toggle_vt':
+                applyVTLocal();
+                break;
             case 'reset':
                 resetToAsIsLocal();
                 break;
@@ -149,6 +158,31 @@ function syncFromSession(data) {
 }
 
 // ===== ACTIONS =====
+
+// --- VT1 / VT2 ---
+async function toggleVT(vt) {
+    activeVT = (activeVT === vt) ? null : vt;
+    applyVTLocal();
+
+    isLocalAction = true;
+    await updateSession({
+        active_vt: activeVT,
+        last_action: 'toggle_vt',
+        action_counter: Date.now()
+    });
+}
+
+function applyVTLocal() {
+    const isVT1 = activeVT === 'VT1';
+    const isVT2 = activeVT === 'VT2';
+
+    toggleVisibility("General", !isVT1 && !isVT2);
+    toggleVisibility("VT1", isVT1);
+    toggleVisibility("VT2", isVT2);
+
+    document.getElementById('vt1-toggle').style.fontWeight = isVT1 ? 'bold' : 'normal';
+    document.getElementById('vt2-toggle').style.fontWeight = isVT2 ? 'bold' : 'normal';
+}
 
 // --- Guide / Auto ---
 async function toggleGuideAuto() {
