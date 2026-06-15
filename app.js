@@ -131,15 +131,27 @@ function syncFromSession(data) {
         switch (action) {
             case 'tp_product':
                 teleport("TP Product");
+                toggleVisibility("VT Production Systems", false);
+                toggleVisibility("VT Supply", false);
+                toggleVisibility("VT Product", true);
                 break;
             case 'tp_production':
                 teleport("TP Production");
+                toggleVisibility("VT Product", false);
+                toggleVisibility("VT Supply", false);
+                toggleVisibility("VT Production Systems", true);
                 break;
             case 'tp_supply':
                 teleport("TP Supply");
+                toggleVisibility("VT Product", false);
+                toggleVisibility("VT Production Systems", false);
+                toggleVisibility("VT Supply", true);
                 break;
             case 'tp_ccl':
                 teleport("TP CCL");
+                toggleVisibility("VT Product", true);
+                toggleVisibility("VT Production Systems", true);
+                toggleVisibility("VT Supply", true);
                 break;
             case 'toggle_guide_auto':
                 applyGuideAutoLocal();
@@ -247,24 +259,36 @@ function applyWebCascadeLocal() {
 // --- Teleport ---
 async function teleportToProduct() {
     teleport("TP Product");
+    toggleVisibility("VT Production Systems", false);
+    toggleVisibility("VT Supply", false);
+    toggleVisibility("VT Product", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_product', action_counter: Date.now() });
 }
 
 async function teleportToProduction() {
     teleport("TP Production");
+    toggleVisibility("VT Product", false);
+    toggleVisibility("VT Supply", false);
+    toggleVisibility("VT Production Systems", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_production', action_counter: Date.now() });
 }
 
 async function teleportToSupply() {
     teleport("TP Supply");
+    toggleVisibility("VT Product", false);
+    toggleVisibility("VT Production Systems", false);
+    toggleVisibility("VT Supply", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_supply', action_counter: Date.now() });
 }
 
 async function teleportToCCL() {
     teleport("TP CCL");
+    toggleVisibility("VT Product", true);
+    toggleVisibility("VT Production Systems", true);
+    toggleVisibility("VT Supply", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_ccl', action_counter: Date.now() });
 }
