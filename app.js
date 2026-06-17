@@ -153,6 +153,9 @@ function syncFromSession(data) {
                 toggleVisibility("VT Production systems", true);
                 toggleVisibility("VT Supply", true);
                 break;
+            case 'tp_eolienne':
+                teleport("TP Eolienne");
+                break;
             case 'toggle_guide_auto':
                 applyGuideAutoLocal();
                 break;
@@ -291,6 +294,12 @@ async function teleportToCCL() {
     toggleVisibility("VT Supply", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_ccl', action_counter: Date.now() });
+}
+
+async function teleportToEolienne() {
+    teleport("TP Eolienne");
+    isLocalAction = true;
+    await updateSession({ last_action: 'tp_eolienne', action_counter: Date.now() });
 }
 
 // --- Reset ---
