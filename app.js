@@ -140,6 +140,8 @@ function syncFromSession(data) {
                 toggleVisibility("VT Product", false);
                 toggleVisibility("VT Supply", false);
                 toggleVisibility("VT Production systems", true);
+                toggleVisibility("room", true);
+                toggleVisibility("Eolienne", false);
                 break;
             case 'tp_supply':
                 teleport("TP Supply");
@@ -274,6 +276,8 @@ async function teleportToProduction() {
     toggleVisibility("VT Product", false);
     toggleVisibility("VT Supply", false);
     toggleVisibility("VT Production systems", true);
+    toggleVisibility("room", true);
+    toggleVisibility("Eolienne", false);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_production', action_counter: Date.now() });
 }
