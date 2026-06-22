@@ -150,6 +150,7 @@ function syncFromSession(data) {
                 toggleVisibility("VT Supply", true);
                 toggleVisibility("TOBELShape", false);
                 toggleVisibility("virtual_training", false);
+                toggleVisibility("General", true);
                 break;
             case 'tp_ccl':
                 teleport("TP CCL");
@@ -291,6 +292,7 @@ async function teleportToSupply() {
     toggleVisibility("VT Supply", true);
     toggleVisibility("TOBELShape", false);
     toggleVisibility("virtual_training", false);
+    toggleVisibility("General", true);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_supply', action_counter: Date.now() });
 }
