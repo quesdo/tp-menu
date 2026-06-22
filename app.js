@@ -148,6 +148,7 @@ function syncFromSession(data) {
                 toggleVisibility("VT Product", false);
                 toggleVisibility("VT Production systems", false);
                 toggleVisibility("VT Supply", true);
+                toggleVisibility("TOBELShape", false);
                 break;
             case 'tp_ccl':
                 teleport("TP CCL");
@@ -287,6 +288,7 @@ async function teleportToSupply() {
     toggleVisibility("VT Product", false);
     toggleVisibility("VT Production systems", false);
     toggleVisibility("VT Supply", true);
+    toggleVisibility("TOBELShape", false);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_supply', action_counter: Date.now() });
 }
