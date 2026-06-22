@@ -157,6 +157,8 @@ function syncFromSession(data) {
                 toggleVisibility("VT Product", true);
                 toggleVisibility("VT Production systems", true);
                 toggleVisibility("VT Supply", true);
+                toggleVisibility("General", true);
+                toggleVisibility("SupplyGartner", false);
                 break;
             case 'tp_eolienne':
                 teleport("TP Eolienne");
@@ -302,6 +304,8 @@ async function teleportToCCL() {
     toggleVisibility("VT Product", true);
     toggleVisibility("VT Production systems", true);
     toggleVisibility("VT Supply", true);
+    toggleVisibility("General", true);
+    toggleVisibility("SupplyGartner", false);
     isLocalAction = true;
     await updateSession({ last_action: 'tp_ccl', action_counter: Date.now() });
 }
